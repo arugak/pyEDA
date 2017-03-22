@@ -388,7 +388,7 @@ class MOSBSim3v3(CircuitElem):
         self.checkParamFix('PDIBLC1',   lambda x: x>=0., 0.0)
         self.checkParamFix('PDIBLC2',   lambda x: x>=0., 0.0)
 
-    def _DC_Curr(self, VGS, VDS, VBS):
+    def _DC_Curr(self, VGS, VDS, VBS, output=('Id','Is','Isub')):
         Leff                = self.Leff
         Weff0               = self.Weff0
         fac_scaling         = self.fac_scaling

@@ -9,6 +9,7 @@ from pyEDA.Compact.AuroraData import *
 import numpy as np
 from scipy.linalg import norm
 from scipy.optimize import leastsq
+from scipy.optimize import least_squares
 from openopt import NLLSP
 from matplotlib import pyplot
 import pickle
@@ -327,9 +328,12 @@ class MOS_IV_Fit(object):
         #result, cov_x, infodict, mesg, success = leastsq(self.fun, guess, (), self.jac, warning=True, factor=1., full_output=1)
         #print '*****', success, infodict['nfev'], mesg
 
-        LSP = NLLSP(self.fun, guess, df = self.jac, ub=ub, lb=lb, scale=scale, xtol = 1e-12, ftol = 1e-12, gtol=1e-12, maxFunEvals = 100)
-        r = LSP.solve(self.solver)
-        result = r.xf
+        #LSP = NLLSP(self.fun, guess, df = self.jac, ub=ub, lb=lb, scale=scale, xtol = 1e-12, ftol = 1e-12, gtol=1e-12, maxFunEvals = 100)
+        #r = LSP.solve(self.solver)
+        #import pdb; pdb.set_trace()
+        r = least_squares(self.fun, guess, self.jac, bounds=(lb,ub), xtol = 1e-12, ftol = 1e-12, gtol = 1e-12, max_nfev=100)
+        print '*****', r.success, r.nfev, r.message
+        result = r.x
         if isinstance(result, np.float):
             result = [result]
         e = self.fun(result)
