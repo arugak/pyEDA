@@ -121,7 +121,7 @@ class MOSBSim3v3(CircuitElem):
         "ALPHA1":  0.0,         # Substrate current model parameter (1/V)
         "BETA0":  30.0,         # Diode limiting current (V)
         "UTE":  -1.5,           # Temperature exponent of mobility (-)
-        "K1":  0.5,             # First order body effect coefficient (V^0.5)
+        "K1":  0.53,            # First order body effect coefficient (V^0.5)
         "K2":  0.0,             # Second order body effect coefficient (-)
         "TEMP": 100,            # Circuit temperature
         "UA1":  4.31e-9,        # Temperature coefficient for ua in m/V
