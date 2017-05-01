@@ -5,12 +5,11 @@ from Elements import *
 import math
 import string
 
-q0      = 1.6021918e-19    # C
-kb      = 1.3806266e-23    # J/K
+q0      = 1.60219e-19    # C
+kb      = 1.3806226e-23    # J/K
 kboq    = 8.617087e-5      # kb/q0
-eps0    = 8.85421487e-12   # F/m
-epsSi   = 11.7 * eps0
-epsOx   = 3.9 * eps0
+epsSi   = 1.03594e-10
+epsOx   = 3.453133e-11
 
 def log1pexp(x):
     if x<37.0:
@@ -238,13 +237,13 @@ class MOSBSim3v3(CircuitElem):
 
         # {{{ LWP dependent parameters
         if self.BINUNIT==1 :
-            invLeff = 1.0/Leff
-            invWeff0 = 1.0/Weff0
-            invLWeff0 = 1.0/(Leff * Weff0)
-        else:
             invLeff = 1e-6/Leff
             invWeff0 = 1e-6/Weff0
             invLWeff0 = 1e-12/(Leff * Weff0)
+        else:
+            invLeff = 1.0/Leff
+            invWeff0 = 1.0/Weff0
+            invLWeff0 = 1.0/(Leff * Weff0)
 
         for k in self.LWP_Deps:
             if kwArgs.has_key('L'+k):
