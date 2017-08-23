@@ -10,7 +10,6 @@ import numpy as np
 from scipy.linalg import norm
 from scipy.optimize import leastsq
 from scipy.optimize import least_squares
-from openopt import NLLSP
 from matplotlib import pyplot
 import pickle
 import os
